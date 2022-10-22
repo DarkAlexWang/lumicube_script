@@ -1,0 +1,255 @@
+# function to print a die throw 1-6 on a given panel
+def print_number(number,panel):
+    if number == 1:
+        print1(panel)
+    elif number == 2:
+        print2(panel)
+    elif number == 3:
+        print3(panel)
+    elif number == 4:
+        print4(panel)
+    elif number == 5:
+        print5(panel)
+    else:
+        print6(panel)
+    return True
+    
+#function to animate rolling die
+def roll_die(panel):
+    elapsed = 0
+    while elapsed < 25:
+        throw = random.randint(1,6)
+        print_number(throw,panel)
+        time.sleep(0.05)
+        elapsed = elapsed + 1
+
+# function to display a throw of 1
+def print1(panel):
+    display.set_panel(panel, [[black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, red, red, black, black, black],
+                                   [black, black, black, red, red, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black]])
+                                   
+# function to display a throw of 2
+def print2(panel):
+    display.set_panel(panel, [[black, black, black, black, black, black, black, black],
+                                   [black, red, red, black, black, black, black, black],
+                                   [black, red, red, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, red, red, black],
+                                   [black, black, black, black, black, red, red, black],
+                                   [black, black, black, black, black, black, black, black]])                                   
+
+# function to display a throw of 3
+def print3(panel):
+    display.set_panel(panel, [[red, red, black, black, black, black, black, black],
+                                   [red, red, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, red, red, black, black, black],
+                                   [black, black, black, red, red, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, red, red],
+                                   [black, black, black, black, black, black, red, red]])
+                                   
+# function to display a throw of 4
+def print4(panel):                                  
+    display.set_panel(panel, [[black, black, black, black, black, black, black, black],
+                                   [black, red, red, black, black, red, red, black],
+                                   [black, red, red, black, black, red, red, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, red, red, black, black, red, red, black],
+                                   [black, red, red, black, black, red, red, black],
+                                   [black, black, black, black, black, black, black, black]])
+
+# function to display a throw of 5
+def print5(panel):
+    display.set_panel(panel, [[red, red, black, black, black, black, red, red],
+                                   [red, red, black, black, black, black, red, red],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, red, red, black, black, black],
+                                   [black, black, black, red, red, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [red, red, black, black, black, black, red, red],
+                                   [red, red, black, black, black, black, red, red]])
+    
+# function to display a throw of 6
+def print6(panel):    
+    display.set_panel(panel, [[black, black, black, black, black, black, black, black],
+                                   [red, red, black, red, red, black, red, red],
+                                   [red, red, black, red, red, black, red, red],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                [red, red, black, red, red, black, red, red],
+                                   [red, red, black, red, red, black, red, red],
+                                   [black, black, black, black, black, black, black, black]])
+
+# Main program
+# clear all panels                                   
+display.set_all(black)
+
+#wait for a button to be pressed
+while True:
+    action = buttons.get_next_action(9999999)
+    display.set_all(black)
+    #top button - top panel   
+    if action == "top":
+        thrown1 = random.randint(1,6)
+        roll_die("top")
+        print_number(thrown1,"top")
+        speaker.say(thrown1)
+    #middle button - left & right panels
+    elif action == "middle":
+        thrown1 = random.randint(1,6)
+        thrown2 = random.randint(1,6)
+        roll_die("left")
+        print_number(thrown1,"left")
+        roll_die("right")
+        print_number(thrown2,"right")
+        speaker.say(thrown1 + thrown2)
+    #bottom button - all three panels
+    elif action == "bottom":
+        thrown1 = random.randint(1,6)
+        thrown2 = random.randint(1,6)
+        thrown3 = random.randint(1,6)
+        roll_die("top")
+        print_number(thrown1,"top")
+        roll_die("left")
+        print_number(thrown2,"left")
+        roll_die("right")
+        print_number(thrown3,"right")
+        speaker.say(thrown1 + thrown2 + thrown3)
+    # force a 1 second pause to let talking finish before waiting for buttons again
+    time.sleep(1)    # function to print a die throw 1-6 on a given panel
+def print_number(number,panel):
+    if number == 1:
+        print1(panel)
+    elif number == 2:
+        print2(panel)
+    elif number == 3:
+        print3(panel)
+    elif number == 4:
+        print4(panel)
+    elif number == 5:
+        print5(panel)
+    else:
+        print6(panel)
+    return True
+    
+#function to animate rolling die
+def roll_die(panel):
+    elapsed = 0
+    while elapsed < 25:
+        throw = random.randint(1,6)
+        print_number(throw,panel)
+        time.sleep(0.1)
+        elapsed = elapsed + 1
+
+# function to display a throw of 1
+def print1(panel):
+    display.set_panel(panel, [[black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, red, red, black, black, black],
+                                   [black, black, black, red, red, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black]])
+                                   
+# function to display a throw of 2
+def print2(panel):
+    display.set_panel(panel, [[black, black, black, black, black, black, black, black],
+                                   [black, red, red, black, black, black, black, black],
+                                   [black, red, red, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, red, red, black],
+                                   [black, black, black, black, black, red, red, black],
+                                   [black, black, black, black, black, black, black, black]])                                   
+
+# function to display a throw of 3
+def print3(panel):
+    display.set_panel(panel, [[red, red, black, black, black, black, black, black],
+                                   [red, red, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, red, red, black, black, black],
+                                   [black, black, black, red, red, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, red, red],
+                                   [black, black, black, black, black, black, red, red]])
+                                   
+# function to display a throw of 4
+def print4(panel):                                  
+    display.set_panel(panel, [[black, black, black, black, black, black, black, black],
+                                   [black, red, red, black, black, red, red, black],
+                                   [black, red, red, black, black, red, red, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, red, red, black, black, red, red, black],
+                                   [black, red, red, black, black, red, red, black],
+                                   [black, black, black, black, black, black, black, black]])
+
+# function to display a throw of 5
+def print5(panel):
+    display.set_panel(panel, [[red, red, black, black, black, black, red, red],
+                                   [red, red, black, black, black, black, red, red],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, red, red, black, black, black],
+                                   [black, black, black, red, red, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                   [red, red, black, black, black, black, red, red],
+                                   [red, red, black, black, black, black, red, red]])
+    
+# function to display a throw of 6
+def print6(panel):    
+    display.set_panel(panel, [[black, black, black, black, black, black, black, black],
+                                   [red, red, black, red, red, black, red, red],
+                                   [red, red, black, red, red, black, red, red],
+                                   [black, black, black, black, black, black, black, black],
+                                   [black, black, black, black, black, black, black, black],
+                                [red, red, black, red, red, black, red, red],
+                                   [red, red, black, red, red, black, red, red],
+                                   [black, black, black, black, black, black, black, black]])
+
+# Main program
+# clear all panels                                   
+display.set_all(black)
+
+#wait for a button to be pressed
+while True:
+    action = buttons.get_next_action(9999999)
+    display.set_all(black)
+    #top button - top panel   
+    if action == "top":
+        thrown1 = random.randint(1,6)
+        roll_die("top")
+        print_number(thrown1,"top")
+        speaker.say(thrown1)
+    #middle button - left & right panels
+    elif action == "middle":
+        thrown1 = random.randint(1,6)
+        thrown2 = random.randint(1,6)
+        roll_die("left")
+        print_number(thrown1,"left")
+        roll_die("right")
+        print_number(thrown2,"right")
+        speaker.say(thrown1 + thrown2)
+    #bottom button - all three panels
+    elif action == "bottom":
+        thrown1 = random.randint(1,6)
+        thrown2 = random.randint(1,6)
+        thrown3 = random.randint(1,6)
+        roll_die("top")
+        print_number(thrown1,"top")
+        roll_die("left")
+        print_number(thrown2,"left")
+        roll_die("right")
+        print_number(thrown3,"right")
+        speaker.say(thrown1 + thrown2 + thrown3)
+    # force a 1 second pause to let talking finish before waiting for buttons again
+    time.sleep(1)    
